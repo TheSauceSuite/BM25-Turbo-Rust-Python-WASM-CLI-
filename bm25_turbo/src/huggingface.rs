@@ -252,13 +252,6 @@ impl HfClient {
         local_path: &Path,
         remote_filename: &str,
     ) -> Result<()> {
-        let url = format!(
-            "{}/{}/upload/main/{}",
-            HF_API_BASE,
-            repo_id,
-            remote_filename
-        );
-
         let file_bytes = std::fs::read(local_path).map_err(|e| {
             Error::HuggingFaceError(format!(
                 "failed to read file '{}': {}",
@@ -266,29 +259,8 @@ impl HfClient {
                 e
             ))
         })?;
-
-        let resp = self
-            .client
-            .put(&url)
-            .header("Authorization", format!("Bearer {}", self.token))
-            .header("Content-Type", "application/octet-stream")
-            .body(file_bytes)
-            .send()
-            .await
-            .map_err(|e| Error::HuggingFaceError(format!("upload request failed: {}", e)))?;
-
-        if resp.status().is_success() {
-            Ok(())
-        } else {
-            let text = resp
-                .text()
-                .await
-                .unwrap_or_else(|_| "unknown error".to_string());
-            Err(Error::HuggingFaceError(format!(
-                "failed to upload '{}' to '{}': {}",
-                remote_filename, repo_id, text
-            )))
-        }
+        self.commit_file(repo_id, remote_filename, file_bytes,
+            &format!("Upload {}", remote_filename)).await
     }
 
     /// Upload a string as a file to a HuggingFace repository.
@@ -298,19 +270,43 @@ impl HfClient {
         content: &str,
         remote_filename: &str,
     ) -> Result<()> {
+        self.commit_file(repo_id, remote_filename, content.as_bytes().to_vec(),
+            &format!("Upload {}", remote_filename)).await
+    }
+
+    /// Upload a single file to a HuggingFace dataset repo via the JSON commit API.
+    async fn commit_file(
+        &self,
+        repo_id: &str,
+        remote_filename: &str,
+        data: Vec<u8>,
+        commit_message: &str,
+    ) -> Result<()> {
+        use base64::Engine;
+
         let url = format!(
-            "{}/{}/upload/main/{}",
-            HF_API_BASE,
-            repo_id,
-            remote_filename
+            "{}/datasets/{}/commit/main",
+            HF_API_BASE, repo_id
         );
+
+        let encoded = base64::engine::general_purpose::STANDARD.encode(&data);
+
+        let body = serde_json::json!({
+            "summary": commit_message,
+            "files": [{
+                "path": remote_filename,
+                "encoding": "base64",
+                "content": encoded,
+            }],
+            "deletedFiles": [],
+        });
 
         let resp = self
             .client
-            .put(&url)
+            .post(&url)
             .header("Authorization", format!("Bearer {}", self.token))
-            .header("Content-Type", "text/plain")
-            .body(content.to_string())
+            .header("Content-Type", "application/json")
+            .json(&body)
             .send()
             .await
             .map_err(|e| Error::HuggingFaceError(format!("upload request failed: {}", e)))?;

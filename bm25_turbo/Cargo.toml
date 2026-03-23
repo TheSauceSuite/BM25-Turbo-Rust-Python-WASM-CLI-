@@ -20,7 +20,7 @@ simd = ["dep:pulp"]
 server = ["dep:axum", "dep:tokio", "dep:tower-http"]
 distributed = ["dep:tonic", "dep:tonic-prost", "dep:prost", "dep:tokio"]
 mcp = ["dep:rmcp", "dep:schemars"]
-huggingface = ["dep:reqwest", "dep:libc"]
+huggingface = ["dep:reqwest", "dep:libc", "dep:base64"]
 ann = []
 wasm = ["dep:wasm-bindgen", "dep:serde-wasm-bindgen"]
 full = ["parallel", "persistence", "simd", "server", "distributed", "mcp", "huggingface", "ann"]
@@ -52,8 +52,9 @@ tonic-prost = { version = "0.14", optional = true }
 prost = { version = "0.14", optional = true }
 rmcp = { version = "1.2", features = ["server", "transport-streamable-http-server"], optional = true }
 schemars = { version = "1", optional = true }
-reqwest = { version = "0.12", default-features = false, features = ["rustls-tls", "json"], optional = true }
+reqwest = { version = "0.12", default-features = false, features = ["rustls-tls", "json", "multipart"], optional = true }
 libc = { version = "0.2", optional = true }
+base64 = { version = "0.22", optional = true }
 wasm-bindgen = { version = "0.2", optional = true }
 serde-wasm-bindgen = { version = "0.6", optional = true }
 
