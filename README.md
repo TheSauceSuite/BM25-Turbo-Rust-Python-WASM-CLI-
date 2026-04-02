@@ -6,7 +6,7 @@
 
 <p align="center">
   <a href="https://github.com/TheSauceSuite/BM25-Turbo-Rust-Python-WASM-CLI-/actions"><img src="https://img.shields.io/github/actions/workflow/status/TheSauceSuite/BM25-Turbo-Rust-Python-WASM-CLI-/ci.yml?label=CI" alt="CI"></a>
-  <a href="LICENSE-MIT"><img src="https://img.shields.io/badge/license-MIT%2FApache--2.0-blue" alt="License"></a>
+  <a href="LICENSE"><img src="https://img.shields.io/badge/license-AGPL--3.0-blue" alt="License"></a>
   <a href="https://github.com/TheSauceSuite/BM25-Turbo-Rust-Python-WASM-CLI-/stargazers"><img src="https://img.shields.io/github/stars/TheSauceSuite/BM25-Turbo-Rust-Python-WASM-CLI-?style=social" alt="Stars"></a>
 </p>
 
@@ -485,9 +485,22 @@ cd bm25-turbo-wasm && wasm-pack build --target web
 
 ## License
 
-Licensed under either of:
+BM25 Turbo is dual-licensed:
 
-- Apache License, Version 2.0 ([LICENSE-APACHE](LICENSE-APACHE))
-- MIT License ([LICENSE-MIT](LICENSE-MIT))
+### Open Source — AGPL v3
 
-at your option.
+This software is licensed under the [GNU Affero General Public License v3.0](LICENSE). You are free to use, modify, and distribute this software under the terms of the AGPL. If you deploy a modified version as a network service, you must make the complete source code of your modified version available to users of that service under the AGPL.
+
+### Commercial License
+
+For companies and individuals who cannot comply with the AGPL (e.g., you want to use BM25 Turbo in proprietary software without open-sourcing your code), a commercial license is available.
+
+**[Purchase a commercial license →](https://alessandrobenigni.com)**
+
+The commercial license removes all AGPL copyleft obligations and includes:
+- Use in proprietary/closed-source applications
+- No requirement to disclose your source code
+- Priority support
+- Custom integration assistance
+
+For licensing inquiries: **[alessandrobenigni.com](https://alessandrobenigni.com)**

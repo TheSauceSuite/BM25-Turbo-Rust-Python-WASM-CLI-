@@ -4,9 +4,9 @@ build-backend = "maturin"
 
 [project]
 name = "bm25-turbo"
-version = "0.1.0"
+version = "0.2.0"
 description = "The fastest BM25 information retrieval engine -- Python bindings"
-license = { text = "MIT OR Apache-2.0" }
+license = { text = "AGPL-3.0-only" }
 requires-python = ">=3.9"
 authors = [{ name = "The Sauce Suite" }]
 readme = "README.md"
@@ -14,8 +14,7 @@ classifiers = [
     "Development Status :: 3 - Alpha",
     "Intended Audience :: Developers",
     "Intended Audience :: Science/Research",
-    "License :: OSI Approved :: MIT License",
-    "License :: OSI Approved :: Apache Software License",
+    "License :: OSI Approved :: GNU Affero General Public License v3",
     "Programming Language :: Rust",
     "Programming Language :: Python :: Implementation :: CPython",
     "Programming Language :: Python :: 3",

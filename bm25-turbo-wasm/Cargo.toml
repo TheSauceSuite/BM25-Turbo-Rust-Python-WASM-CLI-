@@ -11,7 +11,7 @@ description = "BM25 Turbo compiled to WebAssembly — the fastest BM25 search en
 crate-type = ["cdylib", "rlib"]
 
 [dependencies]
-bm25_turbo = { version = "0.1.0", path = "../bm25_turbo", default-features = false, features = ["wasm"] }
+bm25_turbo = { version = "0.2.0", path = "../bm25_turbo", default-features = false, features = ["wasm"] }
 wasm-bindgen = "0.2"
 console_error_panic_hook = "0.1"
 

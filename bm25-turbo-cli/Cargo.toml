@@ -17,7 +17,7 @@ name = "bm25-turbo"
 path = "src/main.rs"
 
 [dependencies]
-bm25_turbo = { version = "0.1.0", path = "../bm25_turbo", features = ["parallel", "persistence", "simd", "server", "mcp", "huggingface", "ann"] }
+bm25_turbo = { version = "0.2.0", path = "../bm25_turbo", features = ["parallel", "persistence", "simd", "server", "mcp", "huggingface", "ann"] }
 clap = { version = "4.5", features = ["derive", "env"] }
 indicatif = "0.17"
 comfy-table = "7"

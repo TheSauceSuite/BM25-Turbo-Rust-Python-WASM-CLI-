@@ -12,6 +12,6 @@ name = "bm25_turbo_python"
 crate-type = ["cdylib"]
 
 [dependencies]
-bm25_turbo = { version = "0.1.0", path = "../bm25_turbo", features = ["parallel", "persistence", "simd"] }
+bm25_turbo = { version = "0.2.0", path = "../bm25_turbo", features = ["parallel", "persistence", "simd"] }
 pyo3 = { version = "0.23", features = ["extension-module"] }
 numpy = "0.23"
